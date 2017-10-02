@@ -1,4 +1,4 @@
-public static boolean validateBSTItr(TreeNode root) {
+public static boolean validateBSTIterative(TreeNode root) {
 
     class TreeBoundaryNode{
       TreeNode treeNode;
