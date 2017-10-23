@@ -23,7 +23,7 @@ class BinarySearch{
 		return 0;
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] arg){
 		System.out.println(search(new int[] {1,2,3,4,5,6} , 5));
 	}
 }
