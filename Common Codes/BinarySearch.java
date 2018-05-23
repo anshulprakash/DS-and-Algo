@@ -1,3 +1,4 @@
+// Doing binary Search
 class BinarySearch{
 	
 	public static int search(int[] a, int x){
