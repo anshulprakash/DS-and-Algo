@@ -1,69 +1,59 @@
-private static int find_length(LinkedListNode head) {
-  int len = 0;
+//Given a linked list, rotate the list to the right by k places, where k is non-negative.
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head == null || k == 0) return head;
 
-  while (head != null) {
-    ++len;
-    head = head.next;
-  }
+        int len = 0;
+        ListNode curr = head;
 
-  return len;
-}
+        while(curr != null){
+            curr = curr.next;
+            len++;
+        }
 
-private static int adjust_rotations_needed(int n, int len) {
-  // If n is positive then number of rotations performed is from right side
-  // and if n is negative then number of rotations performed from left side
-  // Let's optimize the number of rotations.
-  // Handle case if 'n' is a negative number.
-  n = n % len;
+        k = k % len;
+        if(k == 0) return head;
 
-  if (n < 0) {
-    n = n + len;
-  }
+        int count = 1;
+        head = reverse(head);
+        curr = head;
+        while(count != k){
+            curr = curr.next;
+            count++;
+        }
 
-  return n;
-}
+        ListNode head1 = head, head2 = curr.next;
+        curr.next = null;
+        head1 = reverse(head1);
+        head2 = reverse(head2);
 
-public static LinkedListNode rotate_list(LinkedListNode head, int n) {
-  if (head == null || n == 0) {
-    return head;
-  }
+        curr = head1;
+        while(curr.next != null) curr = curr.next;
+        curr.next = head2;
 
-  int len = find_length(head);
+        return head1;
+    }
 
-  // If n (number of rotations required) is bigger than
-  // length of linked list or if n is negative then
-  // we need to adjust total number of rotations needed
-  n = adjust_rotations_needed(n, len);
+    public ListNode reverse(ListNode head){
+        if(head == null || head.next == null) return head;
 
-  if (n == 0) {
-    return head;
-  }
+        ListNode curr = head, prev = null;
 
-  // Find the start of rotated list.
-  // If we have 1,2,3,4,5 where n = 2,
-  // 4 is the start of rotated list.
-  int rotations_count = len - n - 1;
-  LinkedListNode temp = head;
+        while(curr != null){
+            ListNode temp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = temp;
+        }
 
-  while (rotations_count > 0) {
-    rotations_count--;
-    temp = temp.next;
-  }
-
-  // After the above loop temp will be pointing
-  // to one node prior to rotation point
-  LinkedListNode new_head = temp.next;
-
-  // Set new end of list.
-  temp.next = null;
-
-  // Iterate to the end of list and
-  // link that to original head.
-  temp = new_head;
-  while (temp.next != null) {
-    temp = temp.next;
-  }
-  temp.next = head;
-
-  return new_head;
+        return prev;
+    }
 }

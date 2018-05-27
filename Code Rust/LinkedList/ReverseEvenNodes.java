@@ -56,12 +56,6 @@ public class ReverseEvenNodes{
       curr = curr.next;
     }
 
-    // Now, merge the two lists
-    // Original: 1,2,3,4,5
-    // Modified original: 1,3,5
-    // List_even: 4,2
-    // Merged: 1,4,3,2,5
-
     return merge_alternating(head, list_even);
   }
 }
