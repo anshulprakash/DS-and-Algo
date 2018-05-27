@@ -11,20 +11,16 @@ class Solution {
     public ListNode rotateRight(ListNode head, int k) {
         if(head == null || k == 0) return head;
 
-        int len = 0;
-        ListNode curr = head;
-
-        while(curr != null){
-            curr = curr.next;
-            len++;
-        }
+        int len = findLength(head);
 
         k = k % len;
         if(k == 0) return head;
 
         int count = 1;
+        //reverse the entire list
         head = reverse(head);
-        curr = head;
+
+        ListNode curr = head;
         while(count != k){
             curr = curr.next;
             count++;
@@ -42,6 +38,20 @@ class Solution {
         return head1;
     }
 
+    // function to find length of a LinkedList
+    public int findLength(ListNode head){
+
+      int len = 0;
+      ListNode curr = head;
+      while(curr != null){
+        curr = curr.next;
+        len++;
+      }
+
+      return len;
+    }
+
+    // function to reverse a linkedlist
     public ListNode reverse(ListNode head){
         if(head == null || head.next == null) return head;
 
