@@ -1,3 +1,5 @@
+// Create a Inorder iterator
+
 /**
  * Definition for binary tree
  * public class TreeNode {
@@ -37,7 +39,6 @@ public class BSTIterator {
     }
 
     private void pushAll(){
-
       while(root != null){
         stack.push(root);
         root = root.left;

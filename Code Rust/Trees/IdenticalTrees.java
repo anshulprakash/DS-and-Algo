@@ -1,3 +1,4 @@
+//Write a method to check if two binary trees are identical
 public static boolean checkIdentical(TreeNode root1, TreeNode root2){
 
   if(root1 == null && root2 == null) return true;
