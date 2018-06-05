@@ -1,4 +1,5 @@
-//Inorder successor of a node in binary Search Tree (BST) is the next node in inorder traversal. Write a method to find the inorder successor of a given value "d" in a BST.
+//Inorder successor of a node in binary Search Tree (BST) is the next node
+//in inorder traversal. Write a method to find the inorder successor of a given value "d" in a BST.
 
 public static int findInorderSuccessor(TreeNode root, int d){
 
